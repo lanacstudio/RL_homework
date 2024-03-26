@@ -37,7 +37,7 @@
 
       p {
         line-height: 0.1;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
       li,
       label,
@@ -48,8 +48,7 @@
     </style>
   </head>
   <body>
-    <h1>HW1-1</h1>
-    <p>功能：</p>
+    <h1>HW1-1 & HW1-2</h1>
     <ol>
       <li>可數入 n (n= 3~7), 生成 n x n 的 Map</li>
       <li>
@@ -62,6 +61,18 @@
       </li>
 
       <li>可數入 n (n= 3~7), 生成 n x n 的 Map</li>
+      <div
+        style="
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          border: #000000;
+          border-width: 1px;
+          border-style: solid;
+        "
+      ></div>
+
+      <li>顯示每個單元格隨機產生的操作（有上、下、左、右箭頭）作為策略</li>
+      <li>使用策略評估來導出每個狀態的值 V(s)</li>
     </ol>
     <form
       style="padding-top: 2rem; padding-bottom: 2rem"
@@ -81,8 +92,8 @@
       <input type="submit" value="Set Grid Size" />
     </form>
 
-    <div style="display: flex;">
-      <button style="margin-right: 1rem;" id="policyButton">Show Policy</button>
+    <div style="display: flex">
+      <button style="margin-right: 1rem" id="policyButton">Show Policy</button>
       <button id="valueButton">Show Value</button>
     </div>
 

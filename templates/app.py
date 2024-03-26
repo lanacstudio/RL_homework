@@ -12,9 +12,8 @@ obstacles = set()
 
 @app.route('/')
 def index():
-    # return render_template('index.html', grid_size=grid_size)
-    return render_template('HW1-1.html', grid_size=grid_size, start_pos=start_pos, end_pos=end_pos, obstacles=obstacles)
-    # return render_template('HW1-2.html', grid_size=grid_size, start_pos=start_pos, end_pos=end_pos, obstacles=obstacles)
+    return render_template('index.html', grid_size=grid_size)
+    # return render_template('HW1-1.html', grid_size=grid_size, start_pos=start_pos, end_pos=end_pos, obstacles=obstacles)
 
 @app.route('/update_grid_size', methods=['POST'])
 def update_grid_size():
