@@ -27,6 +27,9 @@ HW1-3
 <img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r2.png" width="50%"/>
 
 
+### Demo 影片
+[Demo 影片](https://github.com/lanacstudio/RL_homework/blob/main/result/demo_video.mov)
+
 ### Code
 
 在 ```app.py``` 跟 ```HW1-3.html```
