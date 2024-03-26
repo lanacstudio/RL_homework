@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid World Reinforcement Learning</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 50px); /* 默认为 5x5 的网格 */
+            grid-template-rows: repeat(5, 50px);
+            gap: 1px;
+        }
+
+        .grid-item {
+            width: 50px;
+            height: 50px;
+            background-color: #FFFFFF; /* 默认颜色为白色 */
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grid World Reinforcement Learning</h1>
+    
+    <form id="gridSizeForm" action="/set_grid_size" method="POST">
+        <label for="gridSize">Enter grid size (3-7):</label>
+        <input type="number" id="gridSize" name="grid_size" min="3" max="7" required>
+        <input type="submit" value="Set Grid Size">
+    </form>
+
+    <button id="policyButton">Show Policy</button>
+    <button id="valueButton">Show Value</button>
+    
+    <div class="grid-container" id="gridContainer">
+        <!-- JavaScript will add grid items here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridContainer = document.getElementById('gridContainer');
+            const gridSizeForm = document.getElementById('gridSizeForm');
+            const policyButton = document.getElementById('policyButton');
+            const valueButton = document.getElementById('valueButton');
+
+            let gridSize = 5; // 默认网格大小
+            let startCell = null; // 起始格子
+            let endCell = null; // 结束格子
+            let obstacles = []; // 障碍格子
+
+            // 创建网格
+            function createGrid(size) {
+                gridContainer.innerHTML = ''; // 清空原有网格
+
+                gridContainer.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+                gridContainer.style.gridTemplateRows = `repeat(${size}, 50px)`;
+
+                for (let row = 0; row < size; row++) {
+                    for (let col = 0; col < size; col++) {
+                        const cell = document.createElement('div');
+                        cell.classList.add('grid-item');
+                        cell.dataset.row = row;
+                        cell.dataset.col = col;
+                        cell.addEventListener('click', handleCellClick);
+                        gridContainer.appendChild(cell);
+                    }
+                }
+            }
+
+            // 处理网格点击事件
+            function handleCellClick(event) {
+                const clickedCell = event.target;
+                const row = parseInt(clickedCell.dataset.row);
+                const col = parseInt(clickedCell.dataset.col);
+
+                if (!startCell) {
+                    startCell = clickedCell;
+                    startCell.style.backgroundColor = "#00FF00"; // 绿色
+                } else if (!endCell) {
+                    if (clickedCell !== startCell) {
+                        endCell = clickedCell;
+                        endCell.style.backgroundColor = "#FF0000"; // 红色
+                    }
+                } else {
+                    if (clickedCell !== startCell && clickedCell !== endCell) {
+                        obstacles.push(clickedCell);
+                        clickedCell.style.backgroundColor = "#808080"; // 灰色
+                    }
+                }
+            }
+
+            // 执行值迭代算法
+            function valueIteration() {
+                // 这里添加值迭代算法的逻辑
+                // 在每个格子上显示最优动作和状态值 V(s)
+                // 这里暂时使用随机值来代替最优动作和状态值
+                const cells = gridContainer.querySelectorAll('.grid-item');
+                cells.forEach(cell => {
+                    if (cell !== startCell && cell !== endCell && !obstacles.includes(cell)) {
+                        const actions = ['↑', '↓', '←', '→']; // 上、下、左、右
+                        const randomAction = actions[Math.floor(Math.random() * actions.length)];
+                        const value = Math.random(); // 这里使用随机值代替实际的价值
+                        cell.innerText = `${randomAction}\n${value.toFixed(2)}`;
+                    }
+                });
+            }
+
+            // 提交网格大小表单
+            gridSizeForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const newGridSize = parseInt(document.getElementById('gridSize').value);
+                if (newGridSize >= 3 && newGridSize <= 7) {
+                    gridSize = newGridSize;
+                    createGrid(gridSize);
+                    startCell = null;
+                    endCell = null;
+                    obstacles = [];
+                } else {
+                    alert('Grid size must be between 3 and 7');
+                }
+            });
+
+            // 显示策略按钮点击事件
+            policyButton.addEventListener('click', function() {
+                if (startCell && endCell) {
+                    valueIteration(); // 执行值迭代算法
+                } else {
+                    alert('Please set start and end cells first!');
+                }
+            });
+
+            // 创建初始网格
+            createGrid(gridSize);
+        });
+    </script>
+</body>
+</html>
