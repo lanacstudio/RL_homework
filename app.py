@@ -3,33 +3,33 @@ import numpy as np
 
 app = Flask(__name__)
 
-# 默认网格大小
+# 預設網格大小
 grid_size = 5
-# 默认起始和结束位置
+# 預設起始和結束位置
 start_pos = None
 end_pos = None
-# 默认障碍物位置
+# 預設障礙物位置
 obstacles = set()
 
-# 定义状态值函数和策略
-V = np.zeros((grid_size, grid_size))  # 状态值函数
-policy = np.zeros((grid_size, grid_size), dtype=int)  # 最优策略，0: 上, 1: 下, 2: 左, 3: 右
+# 定義狀態值函數和策略
+V = np.zeros((grid_size, grid_size))  # 狀態值函數
+policy = np.zeros((grid_size, grid_size), dtype=int)  # 最佳策略，0: 上, 1: 下, 2: 左, 3: 右
 
-# 定义值迭代函数
+# 定義值迭代函數
 def value_iteration():
     global V, policy
-    # 值迭代的参数
+    # 值迭代的參數
     gamma = 0.9  # 折扣因子
-    epsilon = 1e-6  # 收敛阈值
+    epsilon = 1e-6  # 收斂閾值
 
     while True:
         delta = 0
         for i in range(grid_size):
             for j in range(grid_size):
                 if (i, j) == start_pos or (i, j) == end_pos:
-                    continue  # 起始点和结束点的值不需要更新
+                    continue  # 起始點和結束點的值不需要更新
                 v = V[i, j]
-                # 计算当前状态的最大价值动作
+                # 計算當前狀態的最大價值動作
                 max_value = float("-inf")
                 for action in range(4):  # 上, 下, 左, 右
                     if action == 0:  # 上
@@ -40,22 +40,22 @@ def value_iteration():
                         next_i, next_j = i, j - 1
                     elif action == 3:  # 右
                         next_i, next_j = i, j + 1
-                    # 检查下一个状态是否有效
+                    # 檢查下一個狀態是否有效
                     if next_i >= 0 and next_i < grid_size and next_j >= 0 and next_j < grid_size and (next_i, next_j) not in obstacles:
                         value = 0 if (next_i, next_j) == end_pos else gamma * V[next_i, next_j]
                         max_value = max(max_value, value)
-                # 更新状态值函数和策略
+                # 更新狀態值函數和策略
                 V[i, j] = max_value
                 delta = max(delta, abs(v - V[i, j]))
-        # 如果状态值函数收敛，则退出循环
+        # 如果狀態值函數收斂，則退出迴圈
         if delta < epsilon:
             break
 
-    # 根据状态值函数确定最优策略
+    # 根據狀態值函數確定最佳策略
     for i in range(grid_size):
         for j in range(grid_size):
             if (i, j) == start_pos or (i, j) == end_pos:
-                continue  # 起始点和结束点无需确定策略
+                continue  # 起始點和結束點無需確定策略
             max_action = None
             max_value = float("-inf")
             for action in range(4):  # 上, 下, 左, 右
@@ -67,13 +67,13 @@ def value_iteration():
                     next_i, next_j = i, j - 1
                 elif action == 3:  # 右
                     next_i, next_j = i, j + 1
-                # 检查下一个状态是否有效
+                # 檢查下一個狀態是否有效
                 if next_i >= 0 and next_i < grid_size and next_j >= 0 and next_j < grid_size and (next_i, next_j) not in obstacles:
                     value = 0 if (next_i, next_j) == end_pos else gamma * V[next_i, next_j]
                     if value > max_value:
                         max_value = value
                         max_action = action
-            # 更新最优策略
+            # 更新最佳策略
             policy[i, j] = max_action
 
 @app.route('/')
@@ -86,13 +86,13 @@ def update_grid_size():
     grid_size = int(request.form['gridSize'])
     return jsonify({'success': True})
 
-# 继续修改 Flask 应用
+# 繼續修改 Flask 應用
 @app.route('/set_start_end', methods=['POST'])
 def set_start_end():
     global start_pos, end_pos
     start_pos = tuple(map(int, request.form['start'].split(',')))
     end_pos = tuple(map(int, request.form['end'].split(',')))
-    # 运行值迭代算法
+    # 執行值迭代演算法
     value_iteration()
     return jsonify({'success': True})
 
@@ -101,7 +101,7 @@ def set_obstacle():
     global obstacles
     obstacle_pos = tuple(map(int, request.form['obstacle'].split(',')))
     obstacles.add(obstacle_pos)
-    # 运行值迭代算法
+    # 執行值迭代演算法
     value_iteration()
     return jsonify({'success': True})
 

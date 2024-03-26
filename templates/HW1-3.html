@@ -21,8 +21,8 @@
         align-items: center;
         width: 80vw;
         display: grid;
-        grid-template-columns: repeat(7, 50px); /* 修改为 50px */
-        grid-template-rows: repeat(7, 50px); /* 修改为 50px */
+        grid-template-columns: repeat(7, 50px); 
+        grid-template-rows: repeat(7, 50px); 
         gap: 1px;
       }
       .grid-item {
@@ -92,14 +92,7 @@
       .infoBoxs {
         display: flex;
       }
-
-      /* .btn {
-        border: none;
-        border-radius: 40px;
-      } */
-
       .btn {
-        /* flex: 1; */
         border: none;
         width: 10rem;
         height: 3rem;
@@ -257,25 +250,24 @@
         <!-- JavaScript will add grid items here -->
       </div>
     </div>
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const gridContainer = document.getElementById("gridContainer");
         const gridSizeForm = document.getElementById("gridSizeForm");
         const policyButton = document.getElementById("policyButton");
         const valueButton = document.getElementById("valueButton");
-
+    
         let gridSize = 5;
         let startCell = null;
         let endCell = null;
         let obstacles = [];
-
+    
         function createGrid(size) {
           gridContainer.innerHTML = "";
-
-          gridContainer.style.gridTemplateColumns = `repeat(${size}, 50px)`; /* 修改为 50px */
-          gridContainer.style.gridTemplateRows = `repeat(${size}, 50px)`; /* 修改为 50px */
-
+    
+          gridContainer.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+          gridContainer.style.gridTemplateRows = `repeat(${size}, 50px)`;
+    
           for (let row = 0; row < size; row++) {
             for (let col = 0; col < size; col++) {
               const cell = document.createElement("div");
@@ -287,19 +279,19 @@
             }
           }
         }
-
+    
         function handleCellClick(event) {
           const clickedCell = event.target;
           const row = parseInt(clickedCell.dataset.row);
           const col = parseInt(clickedCell.dataset.col);
-
+    
           if (!startCell) {
             startCell = clickedCell;
-            startCell.style.backgroundColor = "#00FF00"; // 绿色
+            startCell.style.backgroundColor = "#00FF00"; // 綠色
           } else if (!endCell) {
             if (clickedCell !== startCell) {
               endCell = clickedCell;
-              endCell.style.backgroundColor = "#FF0000"; // 红色
+              endCell.style.backgroundColor = "#FF0000"; // 紅色
             }
           } else {
             if (clickedCell !== startCell && clickedCell !== endCell) {
@@ -308,7 +300,7 @@
             }
           }
         }
-
+    
         function showPolicy() {
           const cells = gridContainer.querySelectorAll(".grid-item");
           cells.forEach((cell) => {
@@ -320,13 +312,13 @@
               const actions = ["↑", "↓", "←", "→"]; // 上、下、左、右
               const randomAction =
                 actions[Math.floor(Math.random() * actions.length)];
-              cell.innerText = randomAction; // 显示随机动作
+              cell.innerText = randomAction; // 顯示隨機動作
             }
           });
         }
-
+    
         function showValue() {
-          // 这里可以添加值迭代算法的逻辑，计算状态值 V(s)，并在每个格子上显示
+          // 這裡可以添加值迭代算法的邏輯，計算狀態值 V(s)，並在每個格子上顯示
           const cells = gridContainer.querySelectorAll(".grid-item");
           cells.forEach((cell) => {
             if (
@@ -334,13 +326,13 @@
               cell !== endCell &&
               !obstacles.includes(cell)
             ) {
-              // 这里暂时使用随机值代替实际的状态值
-              const value = Math.random(); // 随机值
-              cell.innerText = value.toFixed(2); // 显示状态值
+              // 這裡暫時使用隨機值代替實際的狀態值
+              const value = Math.random(); // 隨機值
+              cell.innerText = value.toFixed(2); // 顯示狀態值
             }
           });
         }
-
+    
         gridSizeForm.addEventListener("submit", function (event) {
           event.preventDefault();
           const newGridSize = parseInt(
@@ -353,29 +345,30 @@
             endCell = null;
             obstacles = [];
           } else {
-            alert("Grid size must be between 3 and 7");
+            alert("網格大小必須在3到7之間");
           }
         });
-
+    
         policyButton.addEventListener("click", function () {
           if (startCell && endCell) {
             showPolicy();
           } else {
-            alert("Please set start and end cells first!");
+            alert("請先設置起點和終點單元格！");
           }
         });
-
+    
         valueButton.addEventListener("click", function () {
           if (startCell && endCell) {
             showValue();
           } else {
-            alert("Please set start and end cells first!");
+            alert("請先設置起點和終點單元格！");
           }
         });
-
-        // 创建初始网格
+    
+        // 創建初始網格
         createGrid(gridSize);
       });
     </script>
+    
   </body>
 </html>
