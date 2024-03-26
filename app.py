@@ -1,47 +1,49 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# 默认网格大小为 5x5
-GRID_SIZE = 5
-# 网格颜色定义
-COLOR_START = "#00FF00"  # 绿色
-COLOR_END = "#FF0000"  # 红色
-COLOR_OBSTACLE = "#808080"  # 灰色
-COLOR_NORMAL = "#FFFFFF"  # 白色
+# 默认网格大小
+grid_size = 5
+# 默认起始和结束位置
+start_pos = None
+end_pos = None
+# 默认障碍物位置
+obstacles = set()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', grid_size=grid_size)
+    # return render_template('HW1-1.html', grid_size=grid_size, start_pos=start_pos, end_pos=end_pos, obstacles=obstacles)
 
-@app.route('/set_grid_size', methods=['POST'])
-def set_grid_size():
-    global GRID_SIZE
-    GRID_SIZE = int(request.form['grid_size'])
-    return 'OK'
+@app.route('/update_grid_size', methods=['POST'])
+def update_grid_size():
+    global grid_size
+    grid_size = int(request.form['gridSize'])
+    return jsonify({'success': True})
 
+@app.route('/set_start_end', methods=['POST'])
+def set_start_end():
+    global start_pos, end_pos
+    start_pos = tuple(map(int, request.form['start'].split(',')))
+    end_pos = tuple(map(int, request.form['end'].split(',')))
+    return jsonify({'success': True})
 
-# 定义值迭代算法函数
-def value_iteration(start_cell, end_cell, grid_size, obstacles):
-    # 在这里编写值迭代算法的代码，找出最佳路径并计算状态值 V(s)
-    # 这里简单地返回一个随机生成的动作和状态值，仅用于演示目的
-    policy = [{'row': row, 'col': col, 'action': '↑', 'value': 0.5} for row in range(grid_size) for col in range(grid_size)]
-    return policy
+@app.route('/set_obstacle', methods=['POST'])
+def set_obstacle():
+    global obstacles
+    print('帳案')
+    obstacle_pos = tuple(map(int, request.form['obstacle'].split(',')))
+    obstacles.add(obstacle_pos)
+    return jsonify({'success': True})
 
-# 处理计算策略的 POST 请求
-@app.route('/calculate_policy', methods=['POST'])
-def calculate_policy():
-    data = request.json
-    start_cell = data['startCell']
-    end_cell = data['endCell']
-    grid_size = data['gridSize']
-    obstacles = data['obstacles']
-    
-    # 调用值迭代算法函数计算策略
-    policy = value_iteration(start_cell, end_cell, grid_size, obstacles)
-    
-    # 返回策略结果
-    return jsonify(policy)
+@app.route('/get_grid_info', methods=['GET'])
+def get_grid_info():
+    return jsonify({
+        'grid_size': grid_size,
+        'start_pos': start_pos,
+        'end_pos': end_pos,
+        'obstacles': list(obstacles)
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
