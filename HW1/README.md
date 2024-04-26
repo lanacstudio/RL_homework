@@ -59,6 +59,9 @@ HW1-3
 
 ### Flask Web 截圖
 
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW1/result/demo.gif" width="60%"/>
+
+
 <img src="https://github.com/lanacstudio/RL_homework/blob/main/HW1/result/r3.png" width="60%"/>
 <img src="https://github.com/lanacstudio/RL_homework/blob/main/HW1/result/r1.png" width="60%"/>
 <img src="https://github.com/lanacstudio/RL_homework/blob/main/HW1/result/r1.png" width="60%"/>
