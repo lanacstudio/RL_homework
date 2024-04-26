@@ -22,10 +22,13 @@ HW1-3
 
 ### Flask Web 截圖
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r3.png" width="50%"/>
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r1.png" width="50%"/>
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r2.png" width="50%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r3.png" width="80%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r1.png" width="80%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/result/r2.png" width="80%"/>
 
+
+### Demo 影片
+[Demo 影片](https://github.com/lanacstudio/RL_homework/blob/main/result/demo_video.mov)
 
 ### Code
 
