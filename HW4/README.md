@@ -26,7 +26,7 @@
 
 **(1) DQN update 示意圖**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/DQN-full.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/result/DQN-full.png" width="60%"/>
 
 
 **(2) code with 註解＆對應**
@@ -114,7 +114,7 @@ plt.xlabel("Steps",fontsize=11)
 plt.ylabel("Loss",fontsize=11)
 
 ```
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/DQN-result.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/result/DQN-result.png" width="60%"/>
 
 
 
@@ -132,7 +132,7 @@ plt.ylabel("Loss",fontsize=11)
 
 **流程圖:**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/DQN-random mode.png" width="65%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/result/DQN-random mode.png" width="65%"/>
 
 
 **code:**
@@ -207,7 +207,7 @@ plt.ylabel("Loss",fontsize=11)
 
 **result:**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/random-result.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW4/result/random-result.png" width="60%"/>
 
 
 
