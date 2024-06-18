@@ -1,8 +1,6 @@
-# HW4 Deep reinforcement learning in action code (chap3) using
+# HW5 chatgpt 改寫 and pytorch Lightning
 
-1.  試跑一下 HW_Template=dqn_...OK(已修正).ipynb Code, 讓他正常run 訓練完成
-2.  use chatgpt 改寫chap 3.8 第三章 to Pytorch lightning
-3. 加上call back (Tensorboard, early stop, dump best model, etc)
+目標: HW5 chatgpt 改寫Double DQN with Experience Buffuer Replay (第三章程式_All_in_One.ipynb 3.8 random mode )
 
 **作業要求**： 
 
@@ -21,13 +19,13 @@
 
 **(1) ipnyb 檔裡的片段截圖 （完整 code 在 🗂️HW45/HW5 DQN PyTorch.ipynb）**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot1.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot1.png" width="80%"/>
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot2.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot2.png" width="80%"/>
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot3.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot3.png" width="80%"/>
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot4.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot4.png" width="80%"/>
 
 
 **(2) 附上部分code with 註解**
@@ -305,7 +303,7 @@ plt.show()
 
 **(6) 截圖**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/code1.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/code1.png" width="80%"/>
 
 
 ### `code(2)` with 註解 (only 重要的程式碼區塊，完整版要看 .ipynb)**
@@ -421,7 +419,7 @@ gridworld_trainer.fit(gridworld_model)
 
 **(7) 截圖**
 
-<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/code2.png" width="60%"/>
+<img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/code2.png" width="80%"/>
 
 
 
