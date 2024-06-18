@@ -10,14 +10,15 @@
 
     (3) 加上call back (Tensorboard, early stop, dump best model, etc)
       
-**✅ (1) 的完整版 code ＆ 跑完的結果都在 🗂️HW45/HW5 DQN PyTorch.ipynb 裡**
-**✅ (2)、(3) 的完整版 code ＆ 跑完的結果都在 🗂️HW45/HW5_38_pytorch.ipynb 裡**
+**✅ (1) 的完整版 code ＆ 跑完的結果都在 🗂️HW5/HW5 DQN PyTorch.ipynb 裡**
+
+**✅ (2)、(3) 的完整版 code ＆ 跑完的結果都在 🗂️HW5/HW5_38_pytorch.ipynb 裡**
 
 
 
 ## 1. 試跑一下 HW_Template=dqn_...OK(已修正).ipynb Code, 讓他正常run 訓練完成
 
-**(1) ipnyb 檔裡的片段截圖 （完整 code 在 🗂️HW45/HW5 DQN PyTorch.ipynb）**
+**(1) ipnyb 檔裡的片段截圖 （完整 code 在 🗂️HW5/HW5 DQN PyTorch.ipynb）**
 
 <img src="https://github.com/lanacstudio/RL_homework/blob/main/HW5/imgs/screenshot1.png" width="80%"/>
 
